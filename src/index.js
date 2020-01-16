@@ -15,4 +15,4 @@ mongoose.connect(process.env.MONGO_URL, {
   useUnifiedTopology: true
 })
 
-app.listen(3333, () => console.log('Listening port 3333'));
+app.listen(process.env.PORT || 3333);
