@@ -19,7 +19,10 @@ async function store(req, res) {
       `https://api.github.com/users/${github_username}`
     );
 
-    const { name = login, avatar_url, bio } = response.data;
+    let { login, name, avatar_url, bio } = response.data;
+    if (!name) {
+      name = login;
+    }
     const techsArray = parseStringAsArray(techs);
     const location = {
       type: "Point",
@@ -31,7 +34,7 @@ async function store(req, res) {
       name,
       avatar_url,
       bio,
-      techsArray,
+      techs: techsArray,
       location
     });
   }
